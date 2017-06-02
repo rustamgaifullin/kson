@@ -9,18 +9,19 @@ class GsonExtensionsTest {
     fun checkJsonBuilder() {
         val json = json {
             json("Object") {
-                property("String" to "string")
-                property("Number" to 123)
-                property("Boolean" to true)
-                property("Char" to '1')
+                property("String" value "string")
+                property("Number" value 123)
+                property("Boolean" value true)
+                property("Char" value '1')
             }
 
             array("Array") {
                 json {
-                    property("name" to "value")
+                    property("name" value "value")
                 }
                 json {
-                    property("name2" to 321)
+                    property("name2" value 321)
+                    property{ "name" value "value" }
                 }
                 array {
 

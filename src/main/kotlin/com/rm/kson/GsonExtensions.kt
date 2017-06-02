@@ -37,6 +37,16 @@ fun JsonArray.array(init: JsonArray.() -> Unit): JsonArray {
     return jsonArray
 }
 
+fun JsonObject.property(createProperty: () -> Property) {
+    val property = createProperty.invoke()
+    when (property) {
+        is StringProperty -> this.addProperty(property.name, property.value)
+        is NumberProperty -> this.addProperty(property.name, property.value)
+        is BooleanProperty -> this.addProperty(property.name, property.value)
+        is CharProperty -> this.addProperty(property.name, property.value)
+    }
+}
+
 fun JsonObject.property(property: Property) = when (property) {
     is StringProperty -> this.addProperty(property.name, property.value)
     is NumberProperty -> this.addProperty(property.name, property.value)
@@ -44,10 +54,10 @@ fun JsonObject.property(property: Property) = when (property) {
     is CharProperty -> this.addProperty(property.name, property.value)
 }
 
-infix fun String.to(value: String): Property = StringProperty(this, value)
-infix fun String.to(value: Number): Property = NumberProperty(this, value)
-infix fun String.to(value: Boolean): Property = BooleanProperty(this, value)
-infix fun String.to(value: Char): Property = CharProperty(this, value)
+infix fun String.value(value: String): Property = StringProperty(this, value)
+infix fun String.value(value: Number): Property = NumberProperty(this, value)
+infix fun String.value(value: Boolean): Property = BooleanProperty(this, value)
+infix fun String.value(value: Char): Property = CharProperty(this, value)
 
 sealed class Property
 data class StringProperty(val name: String, val value: String) : Property()
