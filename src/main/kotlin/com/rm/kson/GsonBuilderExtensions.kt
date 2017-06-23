@@ -64,3 +64,11 @@ data class StringProperty(val name: String, val value: String) : Property()
 data class NumberProperty(val name: String, val value: Number) : Property()
 data class BooleanProperty(val name: String, val value: Boolean) : Property()
 data class CharProperty(val name: String, val value: Char) : Property()
+
+/**
+ * Insert primitives in json array
+ */
+fun JsonArray.primitive(value: String) = add(value)
+fun JsonArray.primitive(value: Number) = add(value)
+fun JsonArray.primitive(value: Boolean) = add(value)
+fun JsonArray.primitive(value: Char) = add(value)
