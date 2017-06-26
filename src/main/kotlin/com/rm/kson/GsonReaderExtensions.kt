@@ -94,6 +94,16 @@ fun JsonReader.nextIntValue(): Int {
     return nextInt()
 }
 
+fun JsonReader.nextLongValue(): Long {
+    nextName()
+    return nextLong()
+}
+
+fun JsonReader.nextDoubleValue(): Double {
+    nextName()
+    return nextDouble()
+}
+
 fun JsonReader.nextBooleanValue(): Boolean {
     nextName()
     return nextBoolean()

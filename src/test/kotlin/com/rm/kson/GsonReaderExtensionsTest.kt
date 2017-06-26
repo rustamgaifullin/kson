@@ -19,6 +19,8 @@ class GsonReaderExtensionsTest {
         with (jsonReader) {
             start {
                 assertEquals(1, nextIntValue())
+                assertEquals(1L, nextLongValue())
+                assertEquals(1.0, nextDoubleValue(), 1.0)
                 skipName()
                 beginObject {
                     skipName()

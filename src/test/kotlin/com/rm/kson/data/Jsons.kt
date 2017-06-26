@@ -4,7 +4,9 @@ import com.rm.kson.*
 
 
 fun jsonWithArrays() = json {
-    property("some property" value 1)
+    property("int property" value 1)
+    property("long property" value 1L)
+    property("double property" value 1.0)
     json("object1") {
         array("array1") {
             primitive("primitive0")
