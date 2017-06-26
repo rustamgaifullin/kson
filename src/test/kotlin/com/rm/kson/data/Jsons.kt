@@ -15,14 +15,14 @@ fun jsonWithArrays() = json {
             json {
                 property("property0" value "string0")
                 property("property1" value "string1")
-                property("property2" value "string1")
+                property("property2" value "string2")
             }
 
         }
         array("array3") {
             primitive(0)
             primitive(true)
-            primitive('a')
+            primitive('c')
         }
     }
 }

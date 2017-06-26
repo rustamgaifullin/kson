@@ -7,6 +7,46 @@ import org.junit.Test
 import java.io.StringReader
 
 class GsonReaderExtensionsTest {
+
+    @Test
+    fun `should be able to read json`() {
+        //given
+        val json = jsonWithArrays()
+
+        //when
+        val jsonReader = JsonReader(StringReader(json.toString()))
+
+        with (jsonReader) {
+            start {
+                assertEquals(1, nextIntValue())
+                skipName()
+                beginObject {
+                    skipName()
+                    beginArray {
+                        assertEquals("primitive0", nextStringPrimitive())
+                        assertEquals("primitive1", nextStringPrimitive())
+                        assertEquals("primitive2", nextStringPrimitive())
+                    }
+                    skipName()
+                    beginArray {
+                        beginObject {
+                            assertEquals("string0", nextStringValue())
+                            assertEquals("string1", nextStringValue())
+                            assertEquals("string2", nextStringValue())
+                        }
+                    }
+                    skipName()
+                    beginArray {
+                        assertEquals(0, nextIntPrimitive())
+                        assertEquals(true, nextBooleanPrimitive())
+                        assertEquals("c", nextStringPrimitive())
+                    }
+                }
+
+            }
+        }
+    }
+
     @Test
     fun `should be able to find array in json`() {
         //given

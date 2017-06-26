@@ -83,3 +83,22 @@ fun JsonReader.whileHasNext(body: () -> Unit) {
         body()
     }
 }
+
+fun JsonReader.nextStringValue(): String {
+    nextName()
+    return nextString()
+}
+
+fun JsonReader.nextIntValue(): Int {
+    nextName()
+    return nextInt()
+}
+
+fun JsonReader.nextBooleanValue(): Boolean {
+    nextName()
+    return nextBoolean()
+}
+
+fun JsonReader.nextStringPrimitive() = nextString()
+fun JsonReader.nextIntPrimitive() = nextInt()
+fun JsonReader.nextBooleanPrimitive() = nextBoolean()
