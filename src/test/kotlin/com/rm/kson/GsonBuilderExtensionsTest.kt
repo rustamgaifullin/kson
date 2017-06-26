@@ -3,7 +3,7 @@ package com.rm.kson
 import org.junit.Assert.*
 import org.junit.Test
 
-class GsonExtensionsTest {
+class GsonBuilderExtensionsTest {
 
     @Test
     fun checkJsonBuilder() {
