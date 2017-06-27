@@ -13,25 +13,17 @@ inline fun JsonReader.start(body: () -> Unit) {
 }
 
 inline fun JsonReader.beginObject(body: () -> Unit) {
+    skipName()
     beginObject()
     body()
     endObject()
 }
 
 inline fun JsonReader.beginArray(body: () -> Unit) {
+    skipName()
     beginArray()
     body()
     endArray()
-}
-
-inline fun JsonReader.nextObject(body: () -> Unit) {
-    skipName()
-
-    if (peek() == JsonToken.BEGIN_OBJECT) {
-        beginObject(body)
-    } else {
-        skipValue()
-    }
 }
 
 fun JsonReader.skipName() {

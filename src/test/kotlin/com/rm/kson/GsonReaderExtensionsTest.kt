@@ -21,15 +21,12 @@ class GsonReaderExtensionsTest {
                 assertEquals(1, nextIntValue())
                 assertEquals(1L, nextLongValue())
                 assertEquals(1.0, nextDoubleValue(), 1.0)
-                skipName()
                 beginObject {
-                    skipName()
                     beginArray {
                         assertEquals("primitive0", nextStringPrimitive())
                         assertEquals("primitive1", nextStringPrimitive())
                         assertEquals("primitive2", nextStringPrimitive())
                     }
-                    skipName()
                     beginArray {
                         beginObject {
                             assertEquals("string0", nextStringValue())
@@ -37,7 +34,6 @@ class GsonReaderExtensionsTest {
                             assertEquals("string2", nextStringValue())
                         }
                     }
-                    skipName()
                     beginArray {
                         assertEquals(0, nextIntPrimitive())
                         assertEquals(true, nextBooleanPrimitive())
@@ -60,12 +56,10 @@ class GsonReaderExtensionsTest {
         var counter = 0
         with(jsonReader) {
             start {
-                nextObject {
-                    findArray("array2") {
-                        beginObject {
-                            skipObject()
-                            counter++
-                        }
+                findArray("array2") {
+                    beginObject {
+                        skipObject()
+                        counter++
                     }
                 }
             }
