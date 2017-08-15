@@ -6,13 +6,18 @@ buildscript {
         kotlin_version = '1.1.3'
         gson_version = '2.8.0'
         junit_version = '4.12'
+        bintray_version = '1.7.3'
+        maven_gradle_version = '1.5'
     }
 
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$maven_gradle_version"
     }
 }
 
@@ -26,5 +31,31 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "com.google.code.gson:gson:$gson_version"
     compile "junit:junit:$junit_version"
-
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'kson'
+
+    publishedGroupId = project.group
+    libraryName = 'KSON'
+    artifact = 'kson'
+
+    libraryDescription = 'Extension functions for GSON library for Kotlin'
+
+    siteUrl = 'https://github.com/rustamgaifullin/kson'
+    gitUrl = 'https://github.com/rustamgaifullin/kson.git'
+
+    libraryVersion = project.version
+
+    developerId = 'rustamgaifullin'
+    developerName = 'Rustam Gaifullin'
+    developerEmail = 'rustam.gaifullin@gmail.com'
+
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
+apply from: 'install.gradle'
+apply from: 'upload.gradle'
